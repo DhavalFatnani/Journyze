@@ -1,12 +1,17 @@
 import express from "express";
-import hotels from "../data/hotels.js";
 import Hotel from "../model/hotel.model.js";
 
-const router = express.Router();
+const hotelsRouter = express.Router();
 
-router.get("/", async (req, res) => {
+hotelsRouter.get("/", async (req, res) => {
+  const hotelCategory = req.query.category;
   try {
-    const hotelsData = await Hotel.find({});
+    let hotelsData;
+    if (hotelCategory) {
+      hotelsData = await Hotel.find({ category: hotelCategory });
+    } else {
+      hotelsData = await Hotel.find({});
+    }
     hotelsData
       ? res.json(hotelsData)
       : res.status(404).json({ message: "Hotels not found" });
@@ -15,4 +20,4 @@ router.get("/", async (req, res) => {
   }
 });
 
-export default router;
+export default hotelsRouter;

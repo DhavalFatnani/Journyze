@@ -2,9 +2,9 @@ import express from "express";
 import Hotel from "../model/hotel.model.js";
 import hotels from "../data/hotels.js";
 
-const dataImportRouter = express.Router();
+const hotelImportRouter = express.Router();
 
-dataImportRouter.post("/import", async (req, res) => {
+hotelImportRouter.post("/import", async (req, res) => {
   try {
     await Hotel.deleteMany({});
     const hotelsInDB = await Hotel.insertMany(hotels.data);
@@ -14,4 +14,4 @@ dataImportRouter.post("/import", async (req, res) => {
   }
 });
 
-export default dataImportRouter;
+export default hotelImportRouter;

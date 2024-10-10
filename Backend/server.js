@@ -1,7 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
-import router from "./routes/hotels.router.js";
-import dataImportRouter from "./routes/dataImport.router.js";
+import hotelsRouter from "./routes/hotels.router.js";
+import categoriesRouter from "./routes/categories.router.js";
+import hotelImportRouter from "./routes/hotelsImport.router.js";
+import categoriesImportRouter from "./routes/categoriesImport.router.js";
 import connectDB from "./config/dbConfig.js";
 import mongoose from "mongoose";
 
@@ -19,9 +21,11 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.use("/api/hotelsDataImport", dataImportRouter);
+app.use("/api/hotelsDataImport", hotelImportRouter);
+app.use("/api/categoriesDataImport", categoriesImportRouter);
 
-app.use("/api/hotels", router);
+app.use("/api/hotels", hotelsRouter);
+app.use("/api/categories", categoriesRouter);
 
 mongoose.connection.once("open", () => {
   console.log("MongoDB Connected Successfully!");
