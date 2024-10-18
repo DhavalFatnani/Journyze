@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon -L server.js",
-    "build": "tsc"
+    "dev": "nodemon -L server.js"
   },
   "repository": {
     "type": "git",
